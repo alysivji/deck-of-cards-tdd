@@ -1,4 +1,4 @@
-from carddeck.deck import Card, Deck
+from carddeck.deck import Card, Deck, Hand
 import pytest
 
 
@@ -38,3 +38,11 @@ def test_shuffle(deck):
     deck.shuffle()
 
     assert deck != unshuffled_deck
+
+
+###################
+## Hand Class Tests
+###################
+
+def test_create_hand():
+    hand = Hand()

@@ -43,3 +43,9 @@ class Deck(deque):
     def shuffle(self):
         '''Shuffle deck in place'''
         random.shuffle(self)
+
+
+class Hand:
+
+    def __init__(self):
+        pass
