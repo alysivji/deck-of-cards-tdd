@@ -3,8 +3,7 @@ import random
 
 
 class Card:
-    '''Represents an individual playing card
-    '''
+    '''Individual playing card'''
 
     def __init__(self, suit, rank):
         self.suit = suit
@@ -25,6 +24,7 @@ class Card:
 
 
 class Deck(deque):
+    '''Deck of cards'''
 
     def __init__(self, *args, **kwargs):
         '''Create standard deck of card'''
@@ -44,8 +44,37 @@ class Deck(deque):
         '''Shuffle deck in place'''
         random.shuffle(self)
 
+    def deal_hands(self, num_players, num_cards):
+        '''Deal cards to players
+        
+        Args
+            num_players - num of players to deal to
+            num_cards - num cards each player gets
 
-class Hand:
+        Returns
+            list of Hand objects
+        '''
+
+        total_cards_to_deal = num_players * num_cards
+
+        if total_cards_to_deal > 52:
+            raise ValueError("Not enough cards to deal")
+
+        # set up empty hand
+        player_hands = []
+        for _ in range(num_players):
+            player_hands.append(Hand())
+
+        # deal each card
+        for _ in range(num_cards):
+            for hand in player_hands:
+                hand.append(self.deal())
+
+        return player_hands
+
+
+class Hand(list):
+    '''Cards player is holding'''
 
     def __init__(self):
         pass
