@@ -10,7 +10,7 @@ class Card:
         self.rank = rank
 
     def __len__(self):
-        return 1
+        return len(self)
 
     def __repr__(self):
         return f'{self.rank} of {self.suit}'
@@ -68,7 +68,8 @@ class Deck(deque):
         # deal each card
         for _ in range(num_cards):
             for hand in player_hands:
-                hand.append(self.deal())
+                card = self.deal()
+                hand.add_card(card)
 
         return player_hands
 
@@ -76,5 +77,18 @@ class Deck(deque):
 class Hand(list):
     '''Cards player is holding'''
 
-    def __init__(self):
-        pass
+    def add_card(self, card):
+        self.append(card)
+
+    def score(self):
+        '''Get a score for the hand
+        
+        Default class will get max rank with Ace high'''
+
+        letter_rank = {'J': 11, 'Q': 12, 'K': 13, 'A': 14}
+        rank = card.rank
+
+        ranks = max([rank if isinstance(rank, int) else letter_rank[rank]
+                        for card in self])
+
+        return ranks

@@ -54,5 +54,30 @@ def test_deal_hand(deck):
 ## Hand Class Tests
 ###################
 
-def test_create_hand():
+@pytest.fixture
+def make_test_hand():
     hand = Hand()
+    
+    card1 = Card(suit='hearts', rank=3)
+    card2 = Card(suit='spades', rank=8)
+    card3 = Card(suit='spades', rank='A')
+    hand.add_card(card1)
+    hand.add_card(card2)
+    hand.add_card(card3)
+
+    return hand
+
+def test_create_empty_hand():
+    hand = Hand()
+    assert len(hand) == 0
+
+def test_create_hand_with_multiple_cards(make_test_hand):
+    hand = make_test_hand
+    assert len(hand) == 3
+
+def test_score_hand(make_test_hand):
+    '''Get score... default implementation gets max card (Aces high)'''
+    hand = make_test_hand
+    hand_score = hand.score()
+
+    assert hand_score == 14
