@@ -46,7 +46,7 @@ class Deck(deque):
 
     def deal_hands(self, num_players, num_cards):
         '''Deal cards to players
-        
+
         Args
             num_players - num of players to deal to
             num_cards - num cards each player gets
@@ -82,13 +82,11 @@ class Hand(list):
 
     def score(self):
         '''Get a score for the hand
-        
+
         Default class will get max rank with Ace high'''
 
         letter_rank = {'J': 11, 'Q': 12, 'K': 13, 'A': 14}
-        rank = card.rank
 
-        ranks = max([rank if isinstance(rank, int) else letter_rank[rank]
-                        for card in self])
+        ranks = max([card.rank if isinstance(card.rank, int) else letter_rank[card.rank] for card in self])
 
         return ranks
