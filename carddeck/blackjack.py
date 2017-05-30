@@ -1,7 +1,7 @@
 '''Blackjack Module'''
 
 import itertools
-from carddeck.deck import Card, Deck, Hand
+from carddeck.deck import Hand
 
 
 class BlackjackHand(Hand):
